@@ -43,11 +43,15 @@ P.S. You can delete this when you're done too. It's your config now :)
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local highlight = {
+  "CursorColumn",
+  "Whitespace",
+}
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
     'git',
@@ -218,7 +222,15 @@ require('lazy').setup({
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
-    opts = {},
+   opts = {
+indent = { highlight = highlight, char = "" },
+    whitespace = {
+        highlight = highlight,
+        remove_blankline_trail = false,
+    },
+    scope = { enabled = false } 
+
+    }  
   },
 
   -- "gc" to comment visual regions/lines
