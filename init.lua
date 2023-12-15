@@ -52,6 +52,10 @@ local highlight = {
   "Whitespace",
 }
 
+-- Add autoformat on save
+-- https://www.jvt.me/posts/2022/03/01/neovim-format-on-save/
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
     'git',
@@ -117,7 +121,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -222,15 +226,15 @@ require('lazy').setup({
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
-   opts = {
-indent = { highlight = highlight, char = "" },
-    whitespace = {
+    opts = {
+      indent = { highlight = highlight, char = "" },
+      whitespace = {
         highlight = highlight,
         remove_blankline_trail = false,
-    },
-    scope = { enabled = false } 
+      },
+      scope = { enabled = false }
 
-    }  
+    }
   },
 
   -- "gc" to comment visual regions/lines
