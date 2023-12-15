@@ -52,6 +52,9 @@ local highlight = {
   "Whitespace",
 }
 
+-- Relative line numbers
+vim.wo.relativenumber = true
+
 -- Add autoformat on save
 -- https://www.jvt.me/posts/2022/03/01/neovim-format-on-save/
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
